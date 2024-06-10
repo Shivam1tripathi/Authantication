@@ -7,8 +7,24 @@ import toast from 'react-hot-toast';
 
 const EditProfile = () => {
 
+  //darkmode
+  const [auth,setAuth]=useAuth();
+  let [textcolor,setTextcolor]=useState("white");
+  let [backgroundcolor,setBackgroundcolor]=useState("black");
+  useEffect(()=>{
+    if(auth.darkmode===true){
+      setTextcolor("black");
+      setBackgroundcolor("white");
+    }else{
+      setTextcolor("white");
+      setBackgroundcolor("#78ABA8");
+      
+    }
+  },[auth])
+
+
       // context
-const [auth,setAuth]=useAuth();
+
     const [name,setName]=useState("");
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
@@ -19,7 +35,6 @@ const [auth,setAuth]=useAuth();
 
      //get userdata
      useEffect(()=>{
-
         const {name,email,Phone,address}=auth?.user;
         setName(name);
         setEmail(email);
@@ -61,7 +76,7 @@ const [auth,setAuth]=useAuth();
   return (
     <Layout>
        
-        <div style={{height:"85vh"}} className='flex flex-col items-center bg-slate-200'>
+        <div style={{height:"85vh",backgroundColor:backgroundcolor}} className='flex flex-col items-center'>
           <h1 className='text-5xl mt-10 font-bold '>Register</h1>
             <form onSubmit={handlesubmit} className='bg-slate-400 mt-5 mb-16 flex flex-col p-4 rounded-lg register-form'>
                 <input className='mt-3 w-60 h-8 rounded-lg p-2' value={name} onChange={(e)=>{setName(e.target.value)}} type="text" placeholder='Name' required/>

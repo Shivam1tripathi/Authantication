@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../Component/Layout'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../authcontext';
 
 const Home = () => {
+
   const [auth,setAuth]=useAuth();
+  let [textcolor,setTextcolor]=useState("white");
+  let [backgroundcolor,setBackgroundcolor]=useState("black");
+  useEffect(()=>{
+    if(auth.darkmode===true){
+      setTextcolor("black");
+      setBackgroundcolor("white");
+    }else{
+      setTextcolor("white");
+      setBackgroundcolor("#78ABA8");
+      
+    }
+  },[auth])
   return (
     <Layout>
-      <div style={{height:"85vh"}} className='bg-slate-200 '>  
+      <div style={{height:"85vh",backgroundColor:backgroundcolor}} className='flex flex-col'>  
         <h1 className='text-center font-extrabold text-4xl text-blue-500'>Home</h1>
         
         {
@@ -23,7 +36,12 @@ const Home = () => {
         <h1 className='font-bold text-3xl mt-5'>Address: {auth?.user?.address}</h1>
       </div>
       </>
-      ):(<h1 className='text-center font-extrabold text-4xl'>Please login</h1>)
+      ):(
+        <div style={{height:"85vh"}} className='flex justify-center items-center'>
+           <h1 className='text-center font-extrabold text-5xl text-red-600'>Please login</h1>
+        </div>
+     
+    )
       }
       
       </div>

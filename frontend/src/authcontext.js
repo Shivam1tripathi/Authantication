@@ -6,7 +6,8 @@ const AuthContext=createContext();
 const AuthProvider=({children})=>{
 const [auth,setAuth]=useState({
     user:null,
-    token:""
+    token:"",
+    darkmode:true,
 })
 
 //default axios

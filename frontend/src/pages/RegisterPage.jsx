@@ -1,10 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../Component/Layout'
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../authcontext';
 
 const RegisterPage = () => {
+
+   const [auth,setAuth]=useAuth();
+    let [textcolor,setTextcolor]=useState("white");
+    let [backgroundcolor,setBackgroundcolor]=useState("black");
+    useEffect(()=>{
+      if(auth.darkmode===true){
+        setTextcolor("black");
+        setBackgroundcolor("white");
+      }else{
+        setTextcolor("white");
+        setBackgroundcolor("#78ABA8");
+        
+      }
+    },[auth])
+
+
+
+
   const [name,setName]=useState("");
   const [email,setEmail]=useState("");
   const [password,setPassword]=useState("");
@@ -34,8 +53,8 @@ const RegisterPage = () => {
 
   return (
   <Layout>
-        <div className='flex flex-col items-center bg-slate-200'>
-          <h1 className='text-5xl mt-10 font-bold '>Register</h1>
+        <div style={{backgroundColor:backgroundcolor}}  className='flex flex-col items-center bg-slate-200'>
+          <h1 style={{color:textcolor}} className='text-5xl mt-10 font-bold '>Register</h1>
             <form onSubmit={handlesubmit} className='bg-slate-400 mt-5 mb-16 flex flex-col p-4 rounded-lg register-form'>
                 <input className='mt-3 w-60 h-8 rounded-lg p-2' onChange={(e)=>{setName(e.target.value)}} type="text" placeholder='Name' required/>
                 <input className='mt-3 w-60 h-8 rounded-lg p-2' onChange={(e)=>{setEmail(e.target.value)}}  type="email" placeholder='Email' required/>

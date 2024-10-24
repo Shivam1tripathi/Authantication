@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-.register-form{
+.register-form {
   width: 55vh;
   height: 60vh;
   display: flex;
@@ -12,7 +10,7 @@
   align-items: center;
   justify-content: center;
 }
-.login-form{
+.login-form {
   width: 55vh;
   height: 55vh;
   display: flex;
@@ -21,18 +19,7 @@
   justify-content: center;
 }
 
-
-
-
-
-
-
-
-
-
-
 /* src/DarkModeToggle.css */
-
 
 .switch {
   position: relative;
@@ -55,7 +42,7 @@
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -66,7 +53,7 @@
   left: 4px;
   bottom: 4px;
   background-color: white;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -85,7 +72,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-
 /* src/index.css or src/App.css */
 :root {
   --background-color: white;
@@ -95,4 +81,14 @@ input:checked + .slider:before {
 [data-theme="dark"] {
   --background-color: #121212;
   --text-color: white;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

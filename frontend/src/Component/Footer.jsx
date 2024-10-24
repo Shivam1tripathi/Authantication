@@ -1,28 +1,35 @@
-import React, { useEffect, useState } from 'react'
-import { useAuth } from '../authcontext'
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../authcontext"; // Import the authentication context
 
 const Footer = () => {
-  const [auth,setAuth]=useAuth();
+  const [auth, setAuth] = useAuth(); // Access the auth context to manage user authentication and dark mode
 
-    let [textcolor,setTextcolor]=useState("white");
-    let [backgroundcolor,setBackgroundcolor]=useState("black");
-    useEffect(()=>{
+  // State variables for text color and background color, initialized with default values
+  let [textcolor, setTextcolor] = useState("white");
+  let [backgroundcolor, setBackgroundcolor] = useState("black");
 
-      if(auth.darkmode===true){
-        setTextcolor("black");
-        setBackgroundcolor("white");
-       
-       
-      }else{
-        setTextcolor("white");
-        setBackgroundcolor("black");
-      }
-    },[auth])
+  // Effect to handle color changes based on dark mode setting from auth context
+  useEffect(() => {
+    if (auth.darkmode === true) {
+      // If dark mode is enabled, set text to black and background to white
+      setTextcolor("black");
+      setBackgroundcolor("white");
+    } else {
+      // If dark mode is disabled, set text to white and background to black
+      setTextcolor("white");
+      setBackgroundcolor("black");
+    }
+  }, [auth]); // Dependency on `auth`, runs whenever dark mode setting in auth changes
+
   return (
-    <div className='bg-slate-500 h-20 flex items-center justify-center'>
-      <h1 style={{color:textcolor}}  className='font-extrabold text-4xl'>WELLCOME </h1>
+    // Footer container with dynamic background color
+    <div className="bg-slate-500 h-20 flex items-center justify-center">
+      {/* Welcome message with dynamic text color */}
+      <h1 style={{ color: textcolor }} className="font-extrabold text-4xl">
+        WELCOME
+      </h1>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
